@@ -30,6 +30,7 @@ public class CarDAO implements GenericDAO<Car, Integer> {
                     c.getYear()  + "', '" +
                     c.getColor() + "', '" +
                     c.getOwner() + "');";
+
             Statement st = new DBConnection().getConnection().createStatement();
 
             // Used to manipulate database, not query
@@ -53,6 +54,18 @@ public class CarDAO implements GenericDAO<Car, Integer> {
 
     @Override
     public void remove(Integer id) {
+        try {
+            String sql = "delete from users where \"id\" = '" +
+                    id + "';";
 
+            Statement st = new DBConnection().getConnection().createStatement();
+
+            // Used to manipulate database, not query
+            int i = st.executeUpdate(sql);
+            System.out.println("Number of updated rows: " + i);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

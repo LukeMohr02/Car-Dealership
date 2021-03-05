@@ -28,6 +28,7 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
                     p.getUserId() + "', '" +
                     p.getCarId()  + "', '" +
                     p.getAmount() + "');";
+
             Statement st = new DBConnection().getConnection().createStatement();
 
             // Used to manipulate database, not query
@@ -51,6 +52,18 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
 
     @Override
     public void remove(Integer id) {
+        try {
+            String sql = "delete from payments where \"car_id\" = '" +
+                    id + "';";
 
+            Statement st = new DBConnection().getConnection().createStatement();
+
+            // Used to manipulate database, not query
+            int i = st.executeUpdate(sql);
+            System.out.println("Number of updated rows: " + i);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

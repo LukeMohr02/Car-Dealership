@@ -1,4 +1,4 @@
-package dealership.collections;
+package dealership.collection;
 
 public class ArrayList<E> implements List<E> {
     protected E[] array;

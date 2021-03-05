@@ -26,6 +26,7 @@ public class UserDAO implements GenericDAO<User, String> {
                     u.getUsername() + "', '" +
                     u.getPassword() + "', '" +
                     u.getUserType() + "');";
+
             Statement st = new DBConnection().getConnection().createStatement();
 
             // Used to manipulate database, not query
@@ -49,6 +50,18 @@ public class UserDAO implements GenericDAO<User, String> {
 
     @Override
     public void remove(String id) {
+        try {
+            String sql = "delete from users where \"user_username\" = '" +
+                    id + "';";
 
+            Statement st = new DBConnection().getConnection().createStatement();
+
+            // Used to manipulate database, not query
+            int i = st.executeUpdate(sql);
+            System.out.println("Number of updated rows: " + i);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
