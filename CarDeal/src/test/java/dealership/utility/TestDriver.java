@@ -1,4 +1,4 @@
-package dealership;
+package dealership.utility;
 
 import dealership.database.ConnectionSingleton;
 import dealership.ui.WelcomeMenu;
@@ -6,7 +6,7 @@ import dealership.ui.WelcomeMenu;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Main {
+public class TestDriver {
     public static void main(String[] args) throws SQLException {
 
         Scanner scan = new Scanner(System.in);

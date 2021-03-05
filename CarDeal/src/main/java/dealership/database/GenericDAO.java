@@ -12,9 +12,9 @@ public interface GenericDAO<T, K> {
 
     T[] getAll();
 
-    void remove(K id);
+    void update(T t);
 
-    //void update(T t);
+    void delete(K id);
 
     //void updateAll(collection c);
 }

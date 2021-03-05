@@ -1,7 +1,6 @@
 package dealership.database;
 
 import dealership.model.Car;
-import dealership.model.User;
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,7 +30,7 @@ public class CarDAO implements GenericDAO<Car, Integer> {
                     c.getColor() + "', '" +
                     c.getOwner() + "');";
 
-            Statement st = new DBConnection().getConnection().createStatement();
+            Statement st = new ConnectionSingleton().getConnection().createStatement();
 
             // Used to manipulate database, not query
             int i = st.executeUpdate(sql);
@@ -53,12 +52,12 @@ public class CarDAO implements GenericDAO<Car, Integer> {
     }
 
     @Override
-    public void remove(Integer id) {
+    public void delete(Integer id) {
         try {
             String sql = "delete from users where \"id\" = '" +
                     id + "';";
 
-            Statement st = new DBConnection().getConnection().createStatement();
+            Statement st = new ConnectionSingleton().getConnection().createStatement();
 
             // Used to manipulate database, not query
             int i = st.executeUpdate(sql);
@@ -67,5 +66,9 @@ public class CarDAO implements GenericDAO<Car, Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void update(Car c) {
+
     }
 }
