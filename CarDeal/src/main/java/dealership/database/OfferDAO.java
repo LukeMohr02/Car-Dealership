@@ -88,7 +88,7 @@ public class OfferDAO implements GenericCompositeDAO<Offer, String, Integer> {
     @Override
     public void update(String user_id, Integer car_id, String columnName, String value) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update offers set " + columnName + " = ? where \"user_id\" = ? and \"car_id\" = ?;");
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update offers set " + columnName + " = ? where \"user_id\" like ? and \"car_id\" = ?;");
             ps.setString(1, value);
             ps.setString(2, user_id);
             ps.setInt   (3, car_id);
@@ -105,7 +105,7 @@ public class OfferDAO implements GenericCompositeDAO<Offer, String, Integer> {
     @Override
     public void delete(String user_id, Integer car_id) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from offers where \"user_id\" = ? and \"car_id\" = ?;");
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from offers where \"user_id\" like ? and \"car_id\" = ?;");
             ps.setString(1, user_id);
             ps.setInt   (2, car_id);
 

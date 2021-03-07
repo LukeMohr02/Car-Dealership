@@ -20,7 +20,7 @@ public class GeneralMenu extends AbstractUi {
         String[] defaultActions = {"view cars on the lot","sign out"};
         String[] customerActions = {"make an offer", "view my cars", "view my payments", "apply for work"};
         String[] employeeActions = {"add car to lot", "remove car from lot", "accept offer", "reject offer", "view all payments", "resign from dealership"};
-        String[] systemActions = {"remove all cars from lot", "reject all pending offers", "calculate monthly payment"};
+        String[] systemActions = {"reject all pending offers", "calculate monthly payment"};
         SelectService ss = new SelectService();
 
         int userInputInt = -1;

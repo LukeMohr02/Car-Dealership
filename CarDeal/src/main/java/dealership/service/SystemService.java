@@ -16,13 +16,12 @@ public class SystemService extends GeneralService {
         }
 
         this.scan = scan;
-        sm = new SystemMenu(scan);
-    }
-
-    public void removeAllCars() {
+        sm = new SystemMenu(user, scan);
     }
 
     public void rejectAllOffers() {
+        viewLot();
+        offerDAO.delete("%%",sm.rejectOffersUi());
     }
 
     public void calculateMonthlyPayment() {

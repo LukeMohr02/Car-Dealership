@@ -57,9 +57,6 @@ public class SelectService {
                 break;
 
             // System actions
-            case "remove all cars from lot":
-                ss.removeAllCars();
-                break;
             case "reject all pending offers":
                 ss.rejectAllOffers();
                 break;

@@ -87,7 +87,7 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
     @Override
     public void update(Integer id, String columnName, String value) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update payments set " + columnName + " = ? where \"car_id\" = ?");
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update payments set " + columnName + " = ? where \"car_id\" like ?");
             ps.setString(1, value);
             ps.setInt   (2, id);
 
@@ -103,7 +103,7 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
     @Override
     public void delete(Integer car_id) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from payments where \"car_id\" = ?;");
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from payments where \"car_id\" like ?;");
             ps.setInt(1, car_id);
 
             int i = ps.executeUpdate();

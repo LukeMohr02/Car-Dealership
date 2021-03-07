@@ -31,6 +31,8 @@ public class CustomerMenu {
         //TODO: validate input
         offer.setAmount(scan.nextInt());
 
+        System.out.println("Your offer has been processed!\n");
+
         return offer;
 
     }

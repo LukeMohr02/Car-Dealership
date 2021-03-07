@@ -86,7 +86,7 @@ public class UserDAO implements GenericDAO<User, String> {
     @Override
     public void update(String username, String columnName, String value) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update users set " + columnName + " = ? where \"user_username\" = ?;");
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update users set " + columnName + " = ? where \"user_username\" like ?;");
             ps.setString(1, value);
             ps.setString(2, username);
 
@@ -102,7 +102,7 @@ public class UserDAO implements GenericDAO<User, String> {
     @Override
     public void delete(String username) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from users where \"user_username\" = ?;");
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from users where \"user_username\" like ?;");
             ps.setString(1, username);
 
             int i = ps.executeUpdate();
