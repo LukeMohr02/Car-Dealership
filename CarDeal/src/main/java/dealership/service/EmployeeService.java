@@ -1,6 +1,8 @@
 package dealership.service;
 
+import dealership.model.Car;
 import dealership.model.User;
+import dealership.ui.EmployeeMenu;
 
 import java.util.Scanner;
 
@@ -17,6 +19,7 @@ public class EmployeeService extends GeneralService {
     }
 
     public void addCar() {
+        carDAO.insert(new EmployeeMenu(scan).addCarUi());
     }
 
     public void removeCar() {

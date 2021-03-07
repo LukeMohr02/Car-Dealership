@@ -11,7 +11,7 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
 
-        WelcomeMenu welcome = new WelcomeMenu();
+        WelcomeMenu welcome = new WelcomeMenu(scan);
 
         try {
             ConnectionSingleton.getInstance();
@@ -19,7 +19,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        welcome.showUi(scan);
+        welcome.showUi();
 
         scan.close();
     }        

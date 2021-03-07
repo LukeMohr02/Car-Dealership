@@ -8,11 +8,12 @@ import java.util.Scanner;
 public class GeneralMenu extends AbstractUi {
     User user;
 
-    public GeneralMenu(User user) {
+    public GeneralMenu(User user, Scanner scan) {
+        super(scan);
         this.user = user;
     }
 
-    public void showUi(Scanner scan) {
+    public void showUi() {
 
         //TODO: maybe set these strings from config file?
         String[] defaultActions = {"sign out"};

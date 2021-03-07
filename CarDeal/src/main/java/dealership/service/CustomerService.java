@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class CustomerService extends GeneralService {
 
     CustomerService(User user, Scanner scan) {
+        super();
         if (user.getUserType().equals("customer")) {
             this.user = user;
         } else {
@@ -27,8 +28,8 @@ public class CustomerService extends GeneralService {
     }
 
     public void apply() {
-        Apply ui = new Apply(user);
-        ui.showUi(scan);
+        Apply ui = new Apply(user, scan);
+        ui.showUi();
     }
 
 }

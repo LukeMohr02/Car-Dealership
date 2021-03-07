@@ -13,7 +13,7 @@ public class TestDriver {
 
         Scanner scan = new Scanner(System.in);
 
-        WelcomeMenu welcome = new WelcomeMenu();
+        WelcomeMenu welcome = new WelcomeMenu(scan);
 
         try {
             ConnectionSingleton.getInstance();

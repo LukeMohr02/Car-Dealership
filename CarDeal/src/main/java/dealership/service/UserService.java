@@ -36,8 +36,8 @@ public class UserService {
         return new User(username, password, userType);
     }
 
-    public void addUser(User u) throws IllegalAccessException {
-        dao.insert(u);
+    public void addUser(User user) throws IllegalAccessException {
+        dao.insert(user);
     }
 
     public User getUser(String username) throws IllegalAccessException {

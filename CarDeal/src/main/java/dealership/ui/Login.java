@@ -9,7 +9,11 @@ public class Login extends AbstractUi {
     private int loginAttempts = 3;
     private boolean loginSuccessful = false;
 
-    public void showUi(Scanner scan) {
+    public Login(Scanner scan) {
+        super(scan);
+    }
+
+    public void showUi() {
         String username;
         String password;
 
@@ -29,8 +33,8 @@ public class Login extends AbstractUi {
                     System.out.println("Login successful!");
                     loginSuccessful = true;
 
-                    GeneralMenu gm = new GeneralMenu(user);
-                    gm.showUi(scan);
+                    GeneralMenu gm = new GeneralMenu(user, scan);
+                    gm.showUi();
                 } else {
                     loginAttempts--;
                     System.out.println("Login failed, username or password is incorrect!");

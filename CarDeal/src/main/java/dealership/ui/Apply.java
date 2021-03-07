@@ -8,11 +8,12 @@ import java.util.Scanner;
 public class Apply extends AbstractUi {
     User user;
 
-    public Apply(User user) {
+    public Apply(User user, Scanner scan) {
+        super(scan);
         this.user = user;
     }
 
-    public void showUi(Scanner scan) {
+    public void showUi() {
 
         System.out.println("You have been selected for an interview! Please answer the following interview question:");
         System.out.println("Which came first, the car or the dealership?");
