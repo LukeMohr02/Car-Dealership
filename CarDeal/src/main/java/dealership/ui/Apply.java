@@ -1,6 +1,7 @@
 package dealership.ui;
 
 import dealership.model.User;
+import dealership.service.UserService;
 
 import java.util.Scanner;
 
@@ -17,6 +18,8 @@ public class Apply extends AbstractUi {
         System.out.println("Which came first, the car or the dealership?");
         scan.nextLine();
         System.out.println("That is correct! Congratulations, you are now an employee!");
+
         user.setUserType("employee");
+        new UserService().updateUser(user.getUsername(), "user_type", user.getUserType());
     }
 }

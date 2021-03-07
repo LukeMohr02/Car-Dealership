@@ -10,6 +10,7 @@ public class SignUp extends AbstractUi {
     public void showUi(Scanner scan) {
         String username;
         String password;
+        UserService us = new UserService();
 
         boolean unExists = true;
 
@@ -17,11 +18,10 @@ public class SignUp extends AbstractUi {
             System.out.println("Username: ");
             username = scan.nextLine();
 
-            if (username != null && !UserService.usernameExists(username)) {
+            if (username != null && !us.usernameExists(username)) {
                 System.out.println("Password: ");
                 password = scan.nextLine();
 
-                UserService us = new UserService();
                 User user = null;
 
                 try {

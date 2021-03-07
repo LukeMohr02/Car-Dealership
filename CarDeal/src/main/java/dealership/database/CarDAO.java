@@ -52,6 +52,11 @@ public class CarDAO implements GenericDAO<Car, Integer> {
     }
 
     @Override
+    public void update(Integer carId, String columnName, String value) {
+
+    }
+
+    @Override
     public void delete(Integer id) {
         try {
             String sql = "delete from users where \"id\" = '" +
@@ -66,9 +71,5 @@ public class CarDAO implements GenericDAO<Car, Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public void update(Car c) {
-
     }
 }

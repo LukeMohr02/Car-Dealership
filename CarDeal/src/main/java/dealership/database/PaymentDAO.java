@@ -66,7 +66,7 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
         }
     }
 
-    public void update(Payment p) {
+    public void update(Integer carId, String columnName, String value) {
 
     }
 }

@@ -2,6 +2,7 @@ package dealership.ui;
 
 import java.util.Scanner;
 
+import dealership.model.User;
 import dealership.service.UserService;
 
 public class Login extends AbstractUi {
@@ -23,11 +24,12 @@ public class Login extends AbstractUi {
 
             try {
                 if (us.usernameExists(username) && us.getUser(username).getPassword().equals(password)) {
-                    us.getUser(username).setLoggedIn(true);
+                    User user = us.getUser(username);
+                    user.setLoggedIn(true);
                     System.out.println("Login successful!");
                     loginSuccessful = true;
 
-                    GeneralMenu gm = new GeneralMenu(us.getUser(username));
+                    GeneralMenu gm = new GeneralMenu(user);
                     gm.showUi(scan);
                 } else {
                     loginAttempts--;

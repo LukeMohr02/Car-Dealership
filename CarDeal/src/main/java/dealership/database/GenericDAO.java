@@ -12,7 +12,7 @@ public interface GenericDAO<T, K> {
 
     T[] getAll();
 
-    void update(T t);
+    void update(K id, String columnName, String value);
 
     void delete(K id);
 

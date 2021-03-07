@@ -5,25 +5,30 @@ import dealership.database.GenericDAO;
 import dealership.database.UserDAO;
 import dealership.model.User;
 
-// This class fills in for a database
 // TOO MANY THINGS ARE STATIC
+// TODO: convert this to a generic service
 public class UserService {
 
-    public static boolean usernameExists(String username) {
+    GenericDAO dao;
 
-        /*if (username == null) {
-            return false;
+    public UserService() {
+        try {
+            dao = DAOFactory.getDAO(User.class);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
+    }
+
+    public boolean usernameExists(String username) {
+
+        User[] users = getAllUsers();
 
         for (User u : users) {
-
-            if (u != null) {
-                if (username != null && u.getUsername().equals(username)) {
-                    return true;
-                }
+            if (u.getUsername().equals(username)) {
+                return true;
             }
         }
-        */
+
         return false;
     }
 
@@ -32,12 +37,22 @@ public class UserService {
     }
 
     public void addUser(User u) throws IllegalAccessException {
-        GenericDAO dao = DAOFactory.getDAO(User.class);
         dao.insert(u);
     }
 
     public User getUser(String username) throws IllegalAccessException {
-        GenericDAO dao = DAOFactory.getDAO(User.class);
         return (User) dao.get(username);
+    }
+
+    public User[] getAllUsers() {
+        return (User[]) dao.getAll();
+    }
+
+    public void updateUser(String username, String columnName, String value) {
+        dao.update(username, columnName, value);
+    }
+
+    public void removeUser(String username) {
+        dao.delete(username);
     }
 }

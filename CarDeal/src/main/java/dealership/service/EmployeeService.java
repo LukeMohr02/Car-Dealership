@@ -2,14 +2,18 @@ package dealership.service;
 
 import dealership.model.User;
 
+import java.util.Scanner;
+
 public class EmployeeService extends GeneralService {
 
-    EmployeeService(User user) {
+    EmployeeService(User user, Scanner scan) {
         if (user.getUserType().equals("employee")) {
             this.user = user;
         } else {
             this.user = null;
         }
+
+        this.scan = scan;
     }
 
     public void addCar() {

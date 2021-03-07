@@ -29,6 +29,7 @@ abstract class TakeUserInput {
 
             try {
                 userInput = scan.nextInt();
+                scan.nextLine();
 
                 if (userInput < 1 || userInput > (defLen + specLen)) {
                     throw new InputMismatchException();

@@ -2,15 +2,15 @@ package dealership.service;
 
 import dealership.model.User;
 
+import java.util.Scanner;
+
 public class SelectService {
 
-    public void selectFromString(User user, String service) {
-
-        GeneralService gs = new GeneralService(user);
-        CustomerService cs = new CustomerService(user);
-        EmployeeService es = new EmployeeService(user);
-        SystemService ss = new SystemService(user);
-
+    public void selectFromString(User user, Scanner scan, String service) {
+        GeneralService gs = new GeneralService(user, scan);
+        CustomerService cs = new CustomerService(user, scan);
+        EmployeeService es = new EmployeeService(user, scan);
+        SystemService ss = new SystemService(user, scan);
 
         switch (service) {
 
