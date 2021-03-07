@@ -1,6 +1,6 @@
 package dealership.utility;
 
-import dealership.database.ConnectionSingleton;
+import dealership.database.*;
 import dealership.model.User;
 import dealership.service.UserService;
 import dealership.ui.WelcomeMenu;
@@ -27,11 +27,14 @@ public class TestDriver {
 
         //us.addUser(us.createUser("Fred","123","customer"));
 //        us.removeUser("Fred");
-        User[] users = us.getAllUsers();
+//        User[] users = us.getAllUsers();
+//
+//        for (User i : users) {
+//            System.out.println(i.getUsername() + " " + i.getPassword() + " " + i.getUserType());
+//        }
 
-        for (User i : users) {
-            System.out.println(i.getUsername() + " " + i.getPassword() + " " + i.getUserType());
-        }
+        UserDAO dao = new UserDAO();
+        dao.update("bob","user_username", "Billy");
 
         scan.close();
     }        

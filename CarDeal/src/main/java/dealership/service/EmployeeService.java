@@ -7,6 +7,7 @@ import dealership.ui.EmployeeMenu;
 import java.util.Scanner;
 
 public class EmployeeService extends GeneralService {
+    EmployeeMenu eMenu = new EmployeeMenu(scan);
 
     EmployeeService(User user, Scanner scan) {
         if (user.getUserType().equals("employee")) {
@@ -19,7 +20,7 @@ public class EmployeeService extends GeneralService {
     }
 
     public void addCar() {
-        carDAO.insert(new EmployeeMenu(scan).addCarUi());
+        carDAO.insert(eMenu.addCarUi());
     }
 
     public void removeCar() {

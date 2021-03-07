@@ -2,14 +2,14 @@ package dealership.model;
 
 public class Payment {
     String userId;
-    String carId;
+    int    carId;
     String amount;
 
     public Payment() {
 
     }
 
-    public Payment(String userId, String carId, String amount) {
+    public Payment(String userId, int carId, String amount) {
         this.userId = userId;
         this.carId = carId;
         this.amount = amount;
@@ -23,11 +23,11 @@ public class Payment {
         this.userId = userId;
     }
 
-    public String getCarId() {
+    public int getCarId() {
         return carId;
     }
 
-    public void setCarId(String carId) {
+    public void setCarId(int carId) {
         this.carId = carId;
     }
 

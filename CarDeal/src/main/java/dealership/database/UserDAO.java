@@ -2,7 +2,6 @@ package dealership.database;
 
 import dealership.model.User;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 
 // Java Database Connectivity
@@ -21,12 +20,12 @@ public class UserDAO implements GenericDAO<User, String> {
     }
 
     @Override
-    public void insert(User u) {
+    public void insert(User user) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("insert into users values (?, ?, ?)");
-            ps.setString(1, u.getUsername());
-            ps.setString(2, u.getPassword());
-            ps.setString(3, u.getUserType());
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getUserType());
 
             // Used to manipulate database, not query
             int i = ps.executeUpdate();
@@ -86,8 +85,7 @@ public class UserDAO implements GenericDAO<User, String> {
     @Override
     public void update(String username, String columnName, String value) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update users set user_type = ? where \"user_username\" = ?");
-            //ps.setString(1, "user_type");
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update users set " + columnName + " = ? where \"user_username\" = ?;");
             ps.setString(1, value);
             ps.setString(2, username);
 

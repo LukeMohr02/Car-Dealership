@@ -2,8 +2,9 @@ package dealership.database;
 
 import dealership.model.Payment;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 // Java Database Connectivity
 public class PaymentDAO implements GenericDAO<Payment, Integer> {
@@ -21,17 +22,15 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
     }
 
     @Override
-    public void insert(Payment p) {
+    public void insert(Payment payment) {
         try {
-            String sql = "insert into users (\"car_make\", \"car_model\", \"car_year\", \"car_color\", \"car_owner\") values ('"+
-                    p.getUserId() + "', '" +
-                    p.getCarId()  + "', '" +
-                    p.getAmount() + "');";
-
-            Statement st = new ConnectionSingleton().getConnection().createStatement();
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("insert into payments values (?, ?, ?)");
+            ps.setString(1, payment.getUserId());
+            ps.setInt   (2, payment.getCarId());
+            ps.setString(3, payment.getAmount());
 
             // Used to manipulate database, not query
-            int i = st.executeUpdate(sql);
+            int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);
 
         } catch (SQLException e) {
@@ -40,25 +39,60 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
     }
 
     @Override
-    public Payment get(Integer id) {
+    public Payment get(Integer car_id) {
+        try {
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("select * from payments where car_id = ?;");
+            ps.setInt(1, car_id);
+            ResultSet rs = ps.executeQuery();
+
+            rs.next();
+
+            Payment payment = new Payment();
+            payment.setCarId (rs.getInt   ("car_id"));
+            payment.setUserId(rs.getString("user_id"));
+            payment.setAmount(rs.getString("payment_amount"));
+
+            return payment;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public Payment[] getAll() {
-        return new Payment[0];
+        try {
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("select * from payments", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = ps.executeQuery();
+
+            rs.last();
+            Payment[] payments = new Payment[rs.getRow()];
+            rs.beforeFirst();
+
+            while (rs.next()) {
+                Payment payment = new Payment();
+                payment.setCarId (rs.getInt   ("car_id"));
+                payment.setUserId(rs.getString("user_id"));
+                payment.setAmount(rs.getString("payment_amount"));
+                payments[rs.getRow() - 1] = payment;
+            }
+
+            return payments;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
-    public void delete(Integer id) {
+    public void update(Integer car_id, String columnName, String value) {
         try {
-            String sql = "delete from payments where \"car_id\" = '" +
-                    id + "';";
-
-            Statement st = new ConnectionSingleton().getConnection().createStatement();
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update payments set " + columnName + " = ? where \"car_id\" = ?");
+            ps.setString(1, value);
+            ps.setInt   (2, car_id);
 
             // Used to manipulate database, not query
-            int i = st.executeUpdate(sql);
+            int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);
 
         } catch (SQLException e) {
@@ -66,7 +100,17 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
         }
     }
 
-    public void update(Integer carId, String columnName, String value) {
+    @Override
+    public void delete(Integer car_id) {
+        try {
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from payments where \"car_id\" = ?;");
+            ps.setInt(1, car_id);
 
+            int i = ps.executeUpdate();
+            System.out.println("Number of updated rows: " + i);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
