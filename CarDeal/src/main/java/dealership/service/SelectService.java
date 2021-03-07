@@ -9,7 +9,7 @@ public class SelectService {
     public void selectFromString(User user, Scanner scan, String service) {
         GeneralService  gs = new GeneralService(user, scan);
         CustomerService cs = new CustomerService(user, scan);
-        EmployeeService es = new EmployeeService(user, cs, scan);
+        EmployeeService es = new EmployeeService(user, scan);
         SystemService   ss = new SystemService(user, scan);
 
         switch (service) {
@@ -23,6 +23,9 @@ public class SelectService {
                 break;
 
             // Customer actions
+            case "make an offer":
+                cs.makeOffer();
+                break;
             case "view my cars":
                 cs.viewCars();
                 break;

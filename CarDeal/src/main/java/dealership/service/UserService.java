@@ -49,7 +49,7 @@ public class UserService {
     }
 
     public void updateUser(String username, String columnName, String value) {
-        dao.update(username, columnName, value);
+        dao.update(columnName, value, username);
     }
 
     public void removeUser(String username) {

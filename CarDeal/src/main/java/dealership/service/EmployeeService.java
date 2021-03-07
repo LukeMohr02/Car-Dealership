@@ -11,7 +11,7 @@ class EmployeeService extends GeneralService {
     EmployeeMenu em;
     GeneralService gs;
 
-    EmployeeService(User user, GeneralService gs, Scanner scan) {
+    EmployeeService(User user, Scanner scan) {
         if (user.getUserType().equals("employee")) {
             this.user = user;
         } else {
@@ -20,7 +20,6 @@ class EmployeeService extends GeneralService {
 
         this.scan = scan;
         em = new EmployeeMenu(scan);
-        this.gs = gs;
     }
 
     public void addCar() {
@@ -32,7 +31,7 @@ class EmployeeService extends GeneralService {
     }
 
     public void removeCar() {
-        carDAO.delete(em.removeCarUi(gs));
+        carDAO.delete(em.removeCarUi(this));
     }
 
     public void acceptOffer() {

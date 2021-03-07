@@ -27,7 +27,7 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("insert into payments values (?, ?, ?)");
             ps.setString(1, payment.getUserId());
             ps.setInt   (2, payment.getCarId());
-            ps.setString(3, payment.getAmount());
+            ps.setDouble(3, payment.getAmount());
 
             // Used to manipulate database, not query
             int i = ps.executeUpdate();
@@ -39,10 +39,10 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
     }
 
     @Override
-    public Payment get(Integer car_id) {
+    public Payment get(Integer[] car_id) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("select * from payments where car_id = ?;");
-            ps.setInt(1, car_id);
+            ps.setInt(1, car_id[0]);
             ResultSet rs = ps.executeQuery();
 
             rs.next();
@@ -50,7 +50,7 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
             Payment payment = new Payment();
             payment.setCarId (rs.getInt   ("car_id"));
             payment.setUserId(rs.getString("user_id"));
-            payment.setAmount(rs.getString("payment_amount"));
+            payment.setAmount(rs.getDouble("payment_amount"));
 
             return payment;
         } catch (SQLException e) {
@@ -73,7 +73,7 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
                 Payment payment = new Payment();
                 payment.setCarId (rs.getInt   ("car_id"));
                 payment.setUserId(rs.getString("user_id"));
-                payment.setAmount(rs.getString("payment_amount"));
+                payment.setAmount(rs.getDouble("payment_amount"));
                 payments[rs.getRow() - 1] = payment;
             }
 
@@ -85,11 +85,11 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
     }
 
     @Override
-    public void update(Integer car_id, String columnName, String value) {
+    public void update(String columnName, String value, Integer[] car_id) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update payments set " + columnName + " = ? where \"car_id\" = ?");
             ps.setString(1, value);
-            ps.setInt   (2, car_id);
+            ps.setInt   (2, car_id[0]);
 
             // Used to manipulate database, not query
             int i = ps.executeUpdate();
@@ -101,10 +101,10 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
     }
 
     @Override
-    public void delete(Integer car_id) {
+    public void delete(Integer[] car_id) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from payments where \"car_id\" = ?;");
-            ps.setInt(1, car_id);
+            ps.setInt(1, car_id[0]);
 
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);

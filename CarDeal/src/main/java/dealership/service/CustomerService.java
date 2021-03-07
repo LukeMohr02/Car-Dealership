@@ -22,6 +22,10 @@ class CustomerService extends GeneralService {
         cm = new CustomerMenu(scan);
     }
 
+    public void makeOffer() {
+        //carDAO
+    }
+
     public void viewCars() {
     }
 
@@ -32,5 +36,4 @@ class CustomerService extends GeneralService {
         Apply ui = new Apply(user, scan);
         ui.showUi();
     }
-
 }

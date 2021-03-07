@@ -8,13 +8,13 @@ public interface GenericDAO<T, K> {
 
     void insert(T t);
 
-    T get(K id);
+    T get(K... id);
 
     T[] getAll();
 
-    void update(K id, String columnName, String value);
+    void update(String columnName, String value, K... id);
 
-    void delete(K id);
+    void delete(K... id);
 
     //void updateAll(collection c);
 }

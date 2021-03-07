@@ -42,10 +42,10 @@ public class CarDAO implements GenericDAO<Car, Integer> {
     }
 
     @Override
-    public Car get(Integer id) {
+    public Car get(Integer[] id) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("select * from cars where id = ?;");
-            ps.setInt(1, id);
+            ps.setInt(1, id[0]);
             ResultSet rs = ps.executeQuery();
 
             rs.next();
@@ -94,11 +94,11 @@ public class CarDAO implements GenericDAO<Car, Integer> {
     }
 
     @Override
-    public void update(Integer id, String columnName, String value) {
+    public void update(String columnName, String value, Integer[] id) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update cars set " + columnName + " = ? where \"id\" = ?;");
             ps.setString(1, value);
-            ps.setInt   (2, id);
+            ps.setInt   (2, id[0]);
 
             // Used to manipulate database, not query
             int i = ps.executeUpdate();
@@ -110,10 +110,10 @@ public class CarDAO implements GenericDAO<Car, Integer> {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Integer[] id) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from Cars where \"id\" = ?;");
-            ps.setInt(1, id);
+            ps.setInt(1, id[0]);
 
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);

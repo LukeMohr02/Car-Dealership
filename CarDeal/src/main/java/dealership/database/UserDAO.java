@@ -37,10 +37,10 @@ public class UserDAO implements GenericDAO<User, String> {
     }
 
     @Override
-    public User get(String username) {
+    public User get(String[] username) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("select * from users where user_username = ?;");
-            ps.setString(1, username);
+            ps.setString(1, username[0]);
             ResultSet rs = ps.executeQuery();
 
             rs.next();
@@ -83,11 +83,11 @@ public class UserDAO implements GenericDAO<User, String> {
     }
 
     @Override
-    public void update(String username, String columnName, String value) {
+    public void update(String columnName, String value, String[] username) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update users set " + columnName + " = ? where \"user_username\" = ?;");
             ps.setString(1, value);
-            ps.setString(2, username);
+            ps.setString(2, username[0]);
 
             // Used to manipulate database, not query
             int i = ps.executeUpdate();
@@ -99,10 +99,10 @@ public class UserDAO implements GenericDAO<User, String> {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(String[] username) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from users where \"user_username\" = ?;");
-            ps.setString(1, id);
+            ps.setString(1, username[0]);
 
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);
