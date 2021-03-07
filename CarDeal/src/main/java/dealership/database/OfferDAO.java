@@ -1,14 +1,13 @@
 package dealership.database;
 
 import dealership.model.Offer;
-import dealership.model.Offer;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 // Java Database Connectivity
-public class OfferDAO implements GenericDAO<Offer, Integer> {
+public class OfferDAO implements GenericCompositeDAO<Offer, String, Integer> {
 
     private static OfferDAO instance;
 
@@ -40,10 +39,11 @@ public class OfferDAO implements GenericDAO<Offer, Integer> {
     }
 
     @Override
-    public Offer get(Integer[] comp_id) {
+    public Offer get(String user_id, Integer car_id) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("select * from offers where car_id = ?;");
-            ps.setInt(1, comp_id[0]);
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("select * from offers where user_id = ? and car_id = ?;");
+            ps.setString(1, user_id);
+            ps.setInt   (1, car_id);
             ResultSet rs = ps.executeQuery();
 
             rs.next();
@@ -86,11 +86,12 @@ public class OfferDAO implements GenericDAO<Offer, Integer> {
     }
 
     @Override
-    public void update(String columnName, String value, Integer[] car_id) {
+    public void update(String user_id, Integer car_id, String columnName, String value) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update offers set " + columnName + " = ? where \"car_id\" = ?");
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update offers set " + columnName + " = ? where \"user_id\" = ? and \"car_id\" = ?;");
             ps.setString(1, value);
-            ps.setInt   (2, car_id[0]);
+            ps.setString(2, user_id);
+            ps.setInt   (3, car_id);
 
             // Used to manipulate database, not query
             int i = ps.executeUpdate();
@@ -102,10 +103,11 @@ public class OfferDAO implements GenericDAO<Offer, Integer> {
     }
 
     @Override
-    public void delete(Integer[] car_id) {
+    public void delete(String user_id, Integer car_id) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from offers where \"car_id\" = ?;");
-            ps.setInt(1, car_id[0]);
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from offers where \"user_id\" = ? and \"car_id\" = ?;");
+            ps.setString(1, user_id);
+            ps.setInt   (2, car_id);
 
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);

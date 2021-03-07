@@ -3,6 +3,7 @@ package dealership.database;
 import dealership.model.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 // Java Database Connectivity
 public class UserDAO implements GenericDAO<User, String> {
@@ -37,10 +38,10 @@ public class UserDAO implements GenericDAO<User, String> {
     }
 
     @Override
-    public User get(String[] username) {
+    public User get(String username) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("select * from users where user_username = ?;");
-            ps.setString(1, username[0]);
+            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
 
             rs.next();
@@ -83,11 +84,11 @@ public class UserDAO implements GenericDAO<User, String> {
     }
 
     @Override
-    public void update(String columnName, String value, String[] username) {
+    public void update(String username, String columnName, String value) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("update users set " + columnName + " = ? where \"user_username\" = ?;");
             ps.setString(1, value);
-            ps.setString(2, username[0]);
+            ps.setString(2, username);
 
             // Used to manipulate database, not query
             int i = ps.executeUpdate();
@@ -99,10 +100,10 @@ public class UserDAO implements GenericDAO<User, String> {
     }
 
     @Override
-    public void delete(String[] username) {
+    public void delete(String username) {
         try {
             PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("delete from users where \"user_username\" = ?;");
-            ps.setString(1, username[0]);
+            ps.setString(1, username);
 
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);

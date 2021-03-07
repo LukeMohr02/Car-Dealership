@@ -31,7 +31,8 @@ class EmployeeService extends GeneralService {
     }
 
     public void removeCar() {
-        carDAO.delete(em.removeCarUi(this));
+        viewLot();
+        carDAO.delete(em.removeCarUi());
     }
 
     public void acceptOffer() {

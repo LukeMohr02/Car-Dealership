@@ -29,8 +29,7 @@ public class EmployeeMenu {
         return car;
     }
 
-    public int removeCarUi(GeneralService gs) {
-        gs.viewLot();
+    public int removeCarUi() {
         System.out.println("Please enter the ID of the car you would like to remove:");
 
         //TODO: validate input

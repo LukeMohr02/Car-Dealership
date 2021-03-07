@@ -19,11 +19,12 @@ class CustomerService extends GeneralService {
         }
 
         this.scan = scan;
-        cm = new CustomerMenu(scan);
+        cm = new CustomerMenu(user, scan);
     }
 
     public void makeOffer() {
-        //carDAO
+        viewLot();
+        offerDAO.insert(cm.makeOfferUi());
     }
 
     public void viewCars() {
