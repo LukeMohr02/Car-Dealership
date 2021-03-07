@@ -2,11 +2,8 @@ package dealership.service;
 
 import dealership.database.DAOFactory;
 import dealership.database.GenericDAO;
-import dealership.database.UserDAO;
 import dealership.model.User;
 
-// TOO MANY THINGS ARE STATIC
-// TODO: convert this to a generic service
 public class UserService {
 
     GenericDAO dao;
@@ -41,7 +38,10 @@ public class UserService {
     }
 
     public User getUser(String username) throws IllegalAccessException {
-        return (User) dao.get(username);
+        if (usernameExists(username)) {
+            return (User) dao.get(username);
+        }
+        return null;
     }
 
     public User[] getAllUsers() {

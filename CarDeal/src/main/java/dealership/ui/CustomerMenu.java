@@ -1,5 +1,7 @@
 package dealership.ui;
 
+import dealership.model.Car;
+
 import java.util.Scanner;
 
 public class CustomerMenu {
@@ -11,4 +13,5 @@ public class CustomerMenu {
     public void showUi(Scanner scan) {
 
     }
+
 }

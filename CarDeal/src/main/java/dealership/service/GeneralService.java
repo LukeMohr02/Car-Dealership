@@ -5,6 +5,7 @@ import dealership.database.GenericDAO;
 import dealership.model.Car;
 import dealership.model.Payment;
 import dealership.model.User;
+import dealership.ui.GeneralMenu;
 
 import java.util.Scanner;
 
@@ -25,11 +26,16 @@ public class GeneralService {
 
 
     GeneralService (User user, Scanner scan) {
+        this();
         this.user = user;
         this.scan = scan;
     }
 
     void signOut() {
         user.setLoggedIn(false);
+    }
+
+    public void viewLot() {
+        new GeneralMenu(null, scan).viewLot((Car[]) carDAO.getAll());
     }
 }

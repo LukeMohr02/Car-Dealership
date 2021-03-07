@@ -7,22 +7,22 @@ import java.util.Scanner;
 public class SelectService {
 
     public void selectFromString(User user, Scanner scan, String service) {
-        GeneralService gs = new GeneralService(user, scan);
+        GeneralService  gs = new GeneralService(user, scan);
         CustomerService cs = new CustomerService(user, scan);
-        EmployeeService es = new EmployeeService(user, scan);
-        SystemService ss = new SystemService(user, scan);
+        EmployeeService es = new EmployeeService(user, cs, scan);
+        SystemService   ss = new SystemService(user, scan);
 
         switch (service) {
 
             // Default actions
+            case "view cars on the lot":
+                gs.viewLot();
+                break;
             case "sign out":
                 gs.signOut();
                 break;
 
             // Customer actions
-            case "view cars on lot":
-                cs.viewLot();
-                break;
             case "view my cars":
                 cs.viewCars();
                 break;

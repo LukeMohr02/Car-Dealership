@@ -1,11 +1,14 @@
 package dealership.service;
 
+import dealership.model.Car;
 import dealership.model.User;
 import dealership.ui.Apply;
+import dealership.ui.CustomerMenu;
 
 import java.util.Scanner;
 
-public class CustomerService extends GeneralService {
+class CustomerService extends GeneralService {
+    CustomerMenu cm;
 
     CustomerService(User user, Scanner scan) {
         super();
@@ -16,9 +19,7 @@ public class CustomerService extends GeneralService {
         }
 
         this.scan = scan;
-    }
-
-    public void viewLot() {
+        cm = new CustomerMenu(scan);
     }
 
     public void viewCars() {

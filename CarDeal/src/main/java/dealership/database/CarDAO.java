@@ -30,7 +30,7 @@ public class CarDAO implements GenericDAO<Car, Integer> {
             ps.setString(2, car.getModel());
             ps.setInt   (3, car.getYear());
             ps.setString(4, car.getColor());
-            ps.setString(5, car.getOwner().getUsername());
+            ps.setString(5, car.getOwner()==null?null:car.getOwner().getUsername());
 
             // Used to manipulate database, not query
             int i = ps.executeUpdate();
@@ -44,13 +44,14 @@ public class CarDAO implements GenericDAO<Car, Integer> {
     @Override
     public Car get(Integer id) {
         try {
-            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("select * from Cars where id = ?;");
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareStatement("select * from cars where id = ?;");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
             rs.next();
 
             Car Car = new Car();
+            Car.setId   (rs.getInt   ("id"));
             Car.setMake (rs.getString("car_make"));
             Car.setModel(rs.getString("car_model"));
             Car.setYear (rs.getInt   ("car_year"));
@@ -76,6 +77,7 @@ public class CarDAO implements GenericDAO<Car, Integer> {
 
             while (rs.next()) {
                 Car Car = new Car();
+                Car.setId   (rs.getInt   ("id"));
                 Car.setMake (rs.getString("car_make"));
                 Car.setModel(rs.getString("car_model"));
                 Car.setYear (rs.getInt   ("car_year"));

@@ -33,9 +33,12 @@ public class TestDriver {
 //            System.out.println(i.getUsername() + " " + i.getPassword() + " " + i.getUserType());
 //        }
 
-        UserDAO dao = new UserDAO();
-        dao.update("bob","user_username", "Billy");
+//        UserDAO dao = new UserDAO();
+//        dao.update("bob","user_username", "Billy");
 
-        scan.close();
+//        EmployeeService es = new EmployeeService(us.createUser("", "", "customer"), scan);
+//        es.TESTSCAN();
+//
+//        scan.close();
     }        
 }

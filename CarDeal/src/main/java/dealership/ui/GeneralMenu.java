@@ -1,5 +1,6 @@
 package dealership.ui;
 
+import dealership.model.Car;
 import dealership.service.SelectService;
 import dealership.model.User;
 
@@ -16,7 +17,7 @@ public class GeneralMenu extends AbstractUi {
     public void showUi() {
 
         //TODO: maybe set these strings from config file?
-        String[] defaultActions = {"sign out"};
+        String[] defaultActions = {"view cars on the lot","sign out"};
         String[] customerActions = {"make an offer", "view my cars", "view my payments", "apply for work"};
         String[] employeeActions = {"add car to lot", "remove car from lot", "accept offer", "reject offer", "view all payments", "resign from dealership"};
         String[] systemActions = {"remove all cars from lot", "reject all pending offers", "calculate monthly payment"};
@@ -24,10 +25,9 @@ public class GeneralMenu extends AbstractUi {
 
         int userInputInt = -1;
 
-        System.out.println("Welcome, " + user.getUsername() + "!\nYou are a customer. Please select an option from the list below:\n\n");
+        System.out.println("Welcome, " + user.getUsername() + "!\nYou are a(n) " + user.getUserType() + ". Please select an option from the list below:\n\n");
 
         do {
-            System.out.println(user.getUserType());
             if (user.isLoggedIn() && user.getUserType().equals("customer")) {
                 ss.selectFromString(user, scan, TakeUserInput.takeInput(scan, customerActions, defaultActions));
             } else if (user.isLoggedIn() && user.getUserType().equals("employee")) {
@@ -37,6 +37,21 @@ public class GeneralMenu extends AbstractUi {
             }
         } while (user.isLoggedIn());
 
+
+    }
+
+    public void viewLot(Car[] cars) {
+        System.out.println("\nHere are all the cars on the lot:\n");
+        System.out.println("ID        Make      Model     Year      Color");
+        System.out.println("---------------------------------------------");
+
+        for (Car c : cars) {
+            String format = "%-10s%-10s%-10s%-10s%-10s";
+            System.out.printf(format, c.getId(), c.getMake(), c.getModel(), c.getYear(), c.getColor() );
+            System.out.println("\n");
+        }
+
+        System.out.println("\n");
 
     }
 

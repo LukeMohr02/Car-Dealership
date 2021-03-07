@@ -2,6 +2,7 @@ package dealership.model;
 
 public class Car {
 
+    private int id;
     private String make;
     private String model;
     private int year;
@@ -23,6 +24,10 @@ public class Car {
     public String getMake() {
         return make;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public void setMake(String make) {
         this.make = make;

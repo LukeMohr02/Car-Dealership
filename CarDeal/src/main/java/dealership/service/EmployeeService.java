@@ -2,14 +2,16 @@ package dealership.service;
 
 import dealership.model.Car;
 import dealership.model.User;
+import dealership.ui.CustomerMenu;
 import dealership.ui.EmployeeMenu;
 
 import java.util.Scanner;
 
-public class EmployeeService extends GeneralService {
-    EmployeeMenu eMenu = new EmployeeMenu(scan);
+class EmployeeService extends GeneralService {
+    EmployeeMenu em;
+    GeneralService gs;
 
-    EmployeeService(User user, Scanner scan) {
+    EmployeeService(User user, GeneralService gs, Scanner scan) {
         if (user.getUserType().equals("employee")) {
             this.user = user;
         } else {
@@ -17,13 +19,20 @@ public class EmployeeService extends GeneralService {
         }
 
         this.scan = scan;
+        em = new EmployeeMenu(scan);
+        this.gs = gs;
     }
 
     public void addCar() {
-        carDAO.insert(eMenu.addCarUi());
+        carDAO.insert(em.addCarUi());
+    }
+
+    public Car getCar(int id) {
+        return (Car) carDAO.get(id);
     }
 
     public void removeCar() {
+        carDAO.delete(em.removeCarUi(gs));
     }
 
     public void acceptOffer() {
