@@ -1,6 +1,7 @@
 package dealership.service;
 
 import dealership.model.Car;
+import dealership.model.Payment;
 import dealership.model.User;
 import dealership.ui.Apply;
 import dealership.ui.CustomerMenu;
@@ -28,10 +29,11 @@ class CustomerService extends GeneralService {
     }
 
     public void viewCars() {
-
+        cm.viewCarsUi((Car[]) carDAO.getAll(), user.getUsername());
     }
 
     public void viewPayments() {
+        cm.viewPaymentsUi((Payment[]) paymentDAO.getAll(), user.getUsername());
     }
 
     public void apply() {

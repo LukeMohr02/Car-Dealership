@@ -2,6 +2,7 @@ package dealership.ui;
 
 import dealership.model.Car;
 import dealership.model.Offer;
+import dealership.model.Payment;
 import dealership.model.User;
 import dealership.service.GeneralService;
 
@@ -36,4 +37,37 @@ public class CustomerMenu {
         return offer;
 
     }
+
+    public void viewCarsUi(Car[] cars, String username) {
+        System.out.println("\nHere are the cars that you own:\n");
+        System.out.println("ID        Make      Model     Year      Color");
+        System.out.println("---------------------------------------------");
+
+        for (Car c : cars) {
+            if (c.getOwner() != null && c.getOwner().getUsername().equals(username)) {
+                String format = "%-10s%-10s%-10s%-10s%-10s";
+                System.out.printf(format, c.getId(), c.getMake(), c.getModel(), c.getYear(), c.getColor());
+                System.out.println("\n");
+            }
+        }
+
+        System.out.println("\n");
+    }
+
+    public void viewPaymentsUi(Payment[] payments, String username) {
+        System.out.println("\nHere are your remaining payments:\n");
+        System.out.println("Car ID    Payment amount");
+        System.out.println("------------------------");
+
+        for (Payment p : payments) {
+            if (p.getUserId().equals(username)) {
+                String format = "%-10s%-10s";
+                System.out.printf(format, p.getCarId(), p.getAmount());
+                System.out.println("\n");
+            }
+        }
+
+        System.out.println("\n");
+    }
 }
+

@@ -1,6 +1,8 @@
 package dealership.service;
 
 import dealership.model.Car;
+import dealership.model.Offer;
+import dealership.model.Payment;
 import dealership.model.User;
 import dealership.ui.CustomerMenu;
 import dealership.ui.EmployeeMenu;
@@ -35,13 +37,25 @@ class EmployeeService extends GeneralService {
         carDAO.delete(em.removeCarUi());
     }
 
+    public void viewAllOffers() {
+        em.viewOffersUi((Offer[]) offerDAO.getAll());
+    }
+
     public void acceptOffer() {
+        viewAllOffers();
+        String[] strings = em.acceptOfferUi();
+        paymentDAO.insert(new Payment(strings[0], Integer.parseInt(strings[1]), 1));
+        offerDAO.delete(strings[0], Integer.parseInt(strings[1]));
     }
 
     public void rejectOffer() {
+        viewAllOffers();
+        String[] strings = em.rejectOfferUi();
+        offerDAO.delete(strings[0], Integer.parseInt(strings[1]));
     }
 
-    public void viewALlPayments() {
+    public void viewAllPayments() {
+        em.viewAllPaymentsUi((Payment[]) paymentDAO.getAll());
     }
 
     public void resign() {

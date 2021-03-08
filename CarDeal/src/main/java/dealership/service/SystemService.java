@@ -25,5 +25,6 @@ public class SystemService extends GeneralService {
     }
 
     public void calculateMonthlyPayment() {
+
     }
 }

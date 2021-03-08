@@ -50,7 +50,7 @@ public class SelectService {
                 es.rejectOffer();
                 break;
             case "view all payments":
-                es.viewALlPayments();
+                es.viewAllPayments();
                 break;
             case "resign from dealership":
                 es.resign();
