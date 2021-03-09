@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// Java Database Connectivity
 public class PaymentDAO implements GenericDAO<Payment, Integer> {
 
     private static PaymentDAO instance;
@@ -29,7 +28,6 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
             ps.setInt   (2, payment.getCarId());
             ps.setDouble(3, payment.getAmount());
 
-            // Used to manipulate database, not query
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);
 
@@ -91,7 +89,6 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
             ps.setString(1, value);
             ps.setInt   (2, id);
 
-            // Used to manipulate database, not query
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);
 

@@ -3,9 +3,7 @@ package dealership.database;
 import dealership.model.User;
 
 import java.sql.*;
-import java.util.ArrayList;
 
-// Java Database Connectivity
 public class UserDAO implements GenericDAO<User, String> {
 
     private static UserDAO instance;
@@ -28,7 +26,6 @@ public class UserDAO implements GenericDAO<User, String> {
             ps.setString(2, user.getPassword());
             ps.setString(3, user.getUserType());
 
-            // Used to manipulate database, not query
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);
 
@@ -90,7 +87,6 @@ public class UserDAO implements GenericDAO<User, String> {
             ps.setString(1, value);
             ps.setString(2, username);
 
-            // Used to manipulate database, not query
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);
 

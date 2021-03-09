@@ -11,6 +11,7 @@ import dealership.ui.Resign;
 
 import java.util.Scanner;
 
+// Employee-specific service methods
 class EmployeeService extends GeneralService {
     EmployeeMenu em;
     GeneralService gs;

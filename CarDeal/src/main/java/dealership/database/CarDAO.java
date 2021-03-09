@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// Java Database Connectivity
 public class CarDAO implements GenericDAO<Car, Integer> {
 
     private static CarDAO instance;
@@ -32,7 +31,6 @@ public class CarDAO implements GenericDAO<Car, Integer> {
             ps.setString(4, car.getColor());
             ps.setString(5, car.getOwner()==null?null:car.getOwner().getUsername());
 
-            // Used to manipulate database, not query
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);
 
@@ -100,7 +98,6 @@ public class CarDAO implements GenericDAO<Car, Integer> {
             ps.setString(1, value);
             ps.setInt   (2, id);
 
-            // Used to manipulate database, not query
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);
 

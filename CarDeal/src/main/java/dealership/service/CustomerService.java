@@ -8,6 +8,7 @@ import dealership.ui.CustomerMenu;
 
 import java.util.Scanner;
 
+// Customer-specific service methods
 class CustomerService extends GeneralService {
     CustomerMenu cm;
 

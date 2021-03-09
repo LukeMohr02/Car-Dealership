@@ -9,6 +9,8 @@ import dealership.service.GeneralService;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// Displays customer-specific menus
+// Methods are called by CustomerService
 public class CustomerMenu {
     User user;
     Scanner scan;

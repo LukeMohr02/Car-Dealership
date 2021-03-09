@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class SelectService {
 
+    // Calls the method specified by the input String
     public void selectFromString(User user, Scanner scan, String service) {
         GeneralService  gs = new GeneralService(user, scan);
         CustomerService cs = new CustomerService(user, scan);

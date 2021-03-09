@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// Java Database Connectivity
 public class OfferDAO implements GenericCompositeDAO<Offer, String, Integer> {
 
     private static OfferDAO instance;
@@ -29,7 +28,6 @@ public class OfferDAO implements GenericCompositeDAO<Offer, String, Integer> {
             ps.setInt   (2, offer.getCarId());
             ps.setDouble(3, offer.getAmount());
 
-            // Used to manipulate database, not query
             int i = ps.executeUpdate();
             System.out.println("Number of updated rows: " + i);
 

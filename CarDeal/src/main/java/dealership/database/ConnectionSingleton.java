@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-// Has extra functionality in addition to factory
+// Creates a single connection instance
 public class ConnectionSingleton {
 
     private static ConnectionSingleton instance;
@@ -20,7 +20,6 @@ public class ConnectionSingleton {
     public ConnectionSingleton() throws SQLException {
         //jdbc:postgresql://<aws endpoint>:<port>/<database>
         //  Optional select schema: ?currentSchema=<schema name>
-        //      Anything after ? is a parameter
         connection = DriverManager.getConnection("jdbc:postgresql://car-dealership.csf1elrfwgmr.us-west-1.rds.amazonaws.com:5432/postgres", "lukemohr", "4815162342");
     }
 

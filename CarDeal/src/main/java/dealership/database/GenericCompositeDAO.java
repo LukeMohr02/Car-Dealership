@@ -1,7 +1,5 @@
 package dealership.database;
 
-import dealership.model.User;
-
 //<T> --> class used for dao object
 //<K1> --> 1st primary key
 //<k2> --> 2nd primary key

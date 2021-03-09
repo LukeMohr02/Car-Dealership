@@ -18,6 +18,7 @@ public class SignUp extends AbstractUi {
 
         boolean unExists = true;
 
+        // Prompts user for valid username and password
         do {
             System.out.println("Username: ");
             username = scan.nextLine();
@@ -39,6 +40,7 @@ public class SignUp extends AbstractUi {
                 user.setLoggedIn(true);
                 unExists = false;
 
+                // Moves to GeneralMenu
                 GeneralMenu gm = new GeneralMenu(user, scan);
                 gm.showUi();
 

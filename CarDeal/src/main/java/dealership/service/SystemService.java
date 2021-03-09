@@ -6,6 +6,7 @@ import dealership.ui.SystemMenu;
 
 import java.util.Scanner;
 
+// System-specific service methods
 public class SystemService extends GeneralService {
     SystemMenu sm;
 

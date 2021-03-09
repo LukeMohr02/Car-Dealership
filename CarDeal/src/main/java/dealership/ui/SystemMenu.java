@@ -7,6 +7,8 @@ import dealership.model.User;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// Displays system-specific menus
+// Methods are called by SystemService
 public class SystemMenu {
     User user;
     Scanner scan;

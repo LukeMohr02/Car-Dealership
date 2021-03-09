@@ -4,6 +4,7 @@ import dealership.database.DAOFactory;
 import dealership.database.GenericDAO;
 import dealership.model.User;
 
+// User-specific service methods
 public class UserService {
 
     GenericDAO dao;

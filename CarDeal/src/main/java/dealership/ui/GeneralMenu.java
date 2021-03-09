@@ -16,19 +16,22 @@ public class GeneralMenu extends AbstractUi {
 
     public void showUi() {
 
+        // Represent actions that can be taken by the user
+        //    (selected by TakeUserInput, implemented by SelectService)
         String[] defaultActions = {"view cars on the lot","sign out"};
         String[] customerActions = {"make an offer", "view my cars", "view my payments", "apply for work"};
         String[] employeeActions = {"add car to lot", "remove car from lot", "accept offer", "reject offer", "view all payments", "resign from dealership"};
         String[] systemActions = {"reject all pending offers", "calculate monthly payment", "reset car IDs"};
-        SelectService ss = new SelectService();
 
-        int userInputInt = -1;
+        SelectService ss = new SelectService();
 
         System.out.println("\nWelcome, " + user.getUsername() + "!\nYou are a(n) " + user.getUserType() + ". Please select an option from the list below:");
 
         do {
             System.out.println("\n");
 
+            // Runs TakeUserInput with different String arrays depending on the user type
+            //    Result is passed into SelectService
             if (user.isLoggedIn() && user.getUserType().equals("customer")) {
                 ss.selectFromString(user, scan, TakeUserInput.takeInput(scan, customerActions, defaultActions));
             } else if (user.isLoggedIn() && user.getUserType().equals("employee")) {
@@ -41,6 +44,7 @@ public class GeneralMenu extends AbstractUi {
 
     }
 
+    // Displays all cars to user
     public void viewLot(Car[] cars) {
         System.out.println("\nHere are all the cars on the lot:\n");
         System.out.println("ID        Make      Model     Year      Color");

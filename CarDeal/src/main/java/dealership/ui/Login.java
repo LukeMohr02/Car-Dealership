@@ -25,7 +25,7 @@ public class Login extends AbstractUi {
             System.out.println("Password:");
             password = scan.nextLine();
 
-
+            // Prompts user for existing username and password
             try {
                 if (us.usernameExists(username) && us.getUser(username).getPassword().equals(password)) {
                     user = us.getUser(username);
@@ -48,6 +48,8 @@ public class Login extends AbstractUi {
         } while (!loginSuccessful && loginAttempts > 0);
 
         if (user != null) {
+
+            // Moves to GeneralMenu
             GeneralMenu gm = new GeneralMenu(user, scan);
             gm.showUi();
         }

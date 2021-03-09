@@ -19,9 +19,13 @@ public class WelcomeMenu extends AbstractUi {
         String userInput = scan.nextLine();
 
         if (userInput.equals("sign up")) {
+
+            // Moves to SignUp menu
             SignUp ui = new SignUp(scan);
             ui.showUi();
         } else if (userInput.equals("login")) {
+
+            // Moves to Login menu
             Login ui = new Login(scan);
             ui.showUi();
         }

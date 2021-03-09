@@ -1,10 +1,5 @@
 package dealership.database;
 
-import dealership.model.User;
-
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 //<T> --> class used for dao object
 //<K> --> primary key used by class
 public interface GenericDAO<T, K> {
