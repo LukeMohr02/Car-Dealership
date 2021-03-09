@@ -3,14 +3,14 @@ package dealership.ui;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-abstract class TakeUserInput {
+public class TakeUserInput {
     Scanner scan;
 
     public TakeUserInput(Scanner scan) {
         this.scan = scan;
     }
 
-    static String takeInput(Scanner scan, String[] specificActions, String[] defaultActions) {
+    public static String takeInput(Scanner scan, String[] specificActions, String[] defaultActions) {
         int defLen = defaultActions.length;
         int specLen = specificActions.length;
         int option = 0;

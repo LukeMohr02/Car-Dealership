@@ -109,7 +109,7 @@ public class HashMap<K,V> {
             if(n != null){
                 Node<K,V> n3 = n;
                 do {
-                    result.append(n3.toString() + System.lineSeparator());
+                    result.append(n3.toString() + System.lineSeparator() + System.lineSeparator());
                     n3 = n3.next;
                 } while (n3 != null);
             }
