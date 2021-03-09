@@ -16,8 +16,6 @@ public class TestDiscovery {
 
 
     public Method[] getTestMethods(Class clazz) {
-        // TODO: replace with collection that is dynamic in size, good for frequently adding
-        //      does not allow duplicates,
         if (clazz == null) {
             return null;
         }
@@ -31,7 +29,6 @@ public class TestDiscovery {
         return tempArr;
     }
 
-    // TODO: Implement this method to gather all the test classes and call the getTestMethods method
     public Class[] getTestClasses() {
         Reflections reflections = new Reflections("");
         //System.out.println(reflections.toString());
@@ -77,8 +74,6 @@ public class TestDiscovery {
                 }
             }
         }
-
-         //TODO: check if there is a no arg constructor, if there is not then throw an exception
 
         return results;
     }

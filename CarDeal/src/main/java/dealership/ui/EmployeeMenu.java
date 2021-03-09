@@ -1,10 +1,12 @@
 package dealership.ui;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import dealership.model.Car;
 import dealership.model.Offer;
 import dealership.model.Payment;
 import dealership.service.GeneralService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EmployeeMenu {
@@ -34,8 +36,19 @@ public class EmployeeMenu {
     public int removeCarUi() {
         System.out.println("Please enter the ID of the car you would like to remove:");
 
-        //TODO: validate input
-        int userInput = scan.nextInt();
+        InputMismatchException ime = null;
+        int userInput = -1;
+        do {
+            try {
+                userInput = scan.nextInt();
+                System.out.println("Removing car...");
+
+            } catch (InputMismatchException e) {
+                System.out.println("Input not recognized. Please enter the car ID as shown.");
+                ime = e;
+                scan.next();
+            }
+        } while (ime != null);
 
         System.out.println("Removing ID " + userInput + " from the lot...\n");
 
@@ -59,19 +72,41 @@ public class EmployeeMenu {
     public String[] acceptOfferUi() {
         System.out.println("Please enter the customer name and car ID of the offer you would like to accept:");
 
-        //TODO: validate input
-        String[] strings = {scan.next(), scan.next()};
-        System.out.println("Accepting offer. Please contact your System Administrator to cancel all pending offers for this car.");
-        return strings;
+        InputMismatchException ime = null;
+        String[] userInput = null;
+        do {
+            try {
+                userInput = new String[]{scan.next(), scan.next()};
+                System.out.println("Accepting offer. Please contact your System Administrator to cancel all pending offers for this car.");
+
+            } catch (InputMismatchException e) {
+                System.out.println("Input not recognized. Please enter the customer name and car ID, separated by a space.");
+                ime = e;
+                scan.next();
+            }
+        } while (ime != null);
+
+        return userInput;
     }
 
     public String[] rejectOfferUi() {
-        System.out.println("Please enter the customer name and car ID of the offer you would like to rejec:");
+        System.out.println("Please enter the customer name and car ID of the offer you would like to reject:");
 
-        //TODO: validate input
-        String[] strings = {scan.next(), scan.next()};
-        System.out.println("Rejecting offer...");
-        return strings;
+        InputMismatchException ime = null;
+        String[] userInput = null;
+        do {
+            try {
+                userInput = new String[]{scan.next(), scan.next()};
+                System.out.println("Rejecting offer...");
+
+            } catch (InputMismatchException e) {
+                System.out.println("Input not recognized. Please enter the customer name and car ID, separated by a space.");
+                ime = e;
+                scan.next();
+            }
+        } while (ime != null);
+
+        return userInput;
     }
 
     public void viewAllPaymentsUi(Payment[] payments) {

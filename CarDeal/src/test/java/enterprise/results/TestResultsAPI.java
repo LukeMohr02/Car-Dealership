@@ -6,7 +6,6 @@ import enterprise.model.Status;
 
 import java.time.LocalTime;
 
-// TODO: Implement gathering the throwable case from the actual value and implement the stopwatch feature
 public class TestResultsAPI {
     public static boolean testString(String expected, String actual, String message){
          MetaTestData mt = new MetaTestData();

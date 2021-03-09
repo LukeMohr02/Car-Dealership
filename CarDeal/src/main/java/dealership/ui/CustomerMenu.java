@@ -6,6 +6,7 @@ import dealership.model.Payment;
 import dealership.model.User;
 import dealership.service.GeneralService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CustomerMenu {
@@ -24,13 +25,31 @@ public class CustomerMenu {
 
         System.out.println("Please enter the ID of the car you would like to make an offer on:");
 
-        //TODO: validate input
-        offer.setCarId(scan.nextInt());
+        InputMismatchException ime = null;
+        int userInput = -1;
+        do {
+            try {
+                offer.setCarId(scan.nextInt());
+            } catch (InputMismatchException e) {
+                System.out.println("Input not recognized. Please enter the offer amount as a decimal number.");
+                ime = e;
+                scan.next();
+            }
+        } while (ime != null);
 
         System.out.println("Please enter the offer amount:");
 
-        //TODO: validate input
-        offer.setAmount(scan.nextInt());
+        ime = null;
+        userInput = -1;
+        do {
+            try {
+                offer.setAmount(scan.nextInt());
+            } catch (InputMismatchException e) {
+                System.out.println("Input not recognized. Please enter the offer amount as a decimal number.");
+                ime = e;
+                scan.next();
+            }
+        } while (ime != null);
 
         System.out.println("Your offer has been processed!\n");
 

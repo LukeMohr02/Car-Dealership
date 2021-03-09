@@ -4,6 +4,7 @@ package dealership.ui;
 import dealership.model.Payment;
 import dealership.model.User;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SystemMenu {
@@ -24,8 +25,18 @@ public class SystemMenu {
     public void monthlyPaymentUi(Payment[] payments) {
         System.out.println("Please enter the <monthly loan amount per car> and <interest rate per loan> (as a percentage):");
 
-        //TODO: validate input
-        double[] userInput = new double[]{scan.nextDouble(), scan.nextDouble()};
+        InputMismatchException ime = null;
+        double[] userInput = null;
+        do {
+            try {
+                userInput = new double[]{scan.nextDouble(), scan.nextDouble()};
+                System.out.println(userInput[0] + ", " + userInput[1]);
+            } catch (InputMismatchException e) {
+                System.out.println("Input not recognized. Please enter two decimal numbers, separated by a space.");
+                ime = e;
+                scan.next();
+            }
+        } while (ime != null);
 
         double loanAmount = userInput[0];
         double interestRate = userInput[1];
