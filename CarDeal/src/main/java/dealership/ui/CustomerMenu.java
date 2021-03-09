@@ -31,7 +31,7 @@ public class CustomerMenu {
             try {
                 offer.setCarId(scan.nextInt());
             } catch (InputMismatchException e) {
-                System.out.println("Input not recognized. Please enter the offer amount as a decimal number.");
+                System.out.println("Input not recognized. Please enter the car ID as shown.");
                 ime = e;
                 scan.next();
             }

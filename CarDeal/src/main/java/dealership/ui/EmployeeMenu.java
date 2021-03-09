@@ -41,8 +41,6 @@ public class EmployeeMenu {
         do {
             try {
                 userInput = scan.nextInt();
-                System.out.println("Removing car...");
-
             } catch (InputMismatchException e) {
                 System.out.println("Input not recognized. Please enter the car ID as shown.");
                 ime = e;

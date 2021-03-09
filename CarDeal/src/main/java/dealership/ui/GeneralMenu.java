@@ -24,9 +24,11 @@ public class GeneralMenu extends AbstractUi {
 
         int userInputInt = -1;
 
-        System.out.println("\nWelcome, " + user.getUsername() + "!\nYou are a(n) " + user.getUserType() + ". Please select an option from the list below:\n\n");
+        System.out.println("\nWelcome, " + user.getUsername() + "!\nYou are a(n) " + user.getUserType() + ". Please select an option from the list below:");
 
         do {
+            System.out.println("\n");
+
             if (user.isLoggedIn() && user.getUserType().equals("customer")) {
                 ss.selectFromString(user, scan, TakeUserInput.takeInput(scan, customerActions, defaultActions));
             } else if (user.isLoggedIn() && user.getUserType().equals("employee")) {

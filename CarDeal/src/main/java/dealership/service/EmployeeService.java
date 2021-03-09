@@ -4,8 +4,10 @@ import dealership.model.Car;
 import dealership.model.Offer;
 import dealership.model.Payment;
 import dealership.model.User;
+import dealership.ui.Apply;
 import dealership.ui.CustomerMenu;
 import dealership.ui.EmployeeMenu;
+import dealership.ui.Resign;
 
 import java.util.Scanner;
 
@@ -60,5 +62,7 @@ class EmployeeService extends GeneralService {
     }
 
     public void resign() {
+        Resign ui = new Resign(user, scan);
+        ui.showUi();
     }
 }
