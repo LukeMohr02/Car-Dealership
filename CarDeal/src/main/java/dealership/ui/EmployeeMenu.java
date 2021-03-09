@@ -57,7 +57,7 @@ public class EmployeeMenu {
     }
 
     public String[] acceptOfferUi() {
-        System.out.println("Please enter the customer name and car ID of the offer you would like to reject:");
+        System.out.println("Please enter the customer name and car ID of the offer you would like to accept:");
 
         //TODO: validate input
         String[] strings = {scan.next(), scan.next()};
@@ -66,7 +66,7 @@ public class EmployeeMenu {
     }
 
     public String[] rejectOfferUi() {
-        System.out.println("Please enter the customer name and car ID of the offer you would like to accept:");
+        System.out.println("Please enter the customer name and car ID of the offer you would like to rejec:");
 
         //TODO: validate input
         String[] strings = {scan.next(), scan.next()};

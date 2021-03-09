@@ -113,4 +113,9 @@ public class PaymentDAO implements GenericDAO<Payment, Integer> {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void callFunction() {
+
+    }
 }

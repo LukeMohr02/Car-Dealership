@@ -1,5 +1,6 @@
 package dealership.service;
 
+import dealership.model.Payment;
 import dealership.model.User;
 import dealership.ui.SystemMenu;
 
@@ -25,6 +26,10 @@ public class SystemService extends GeneralService {
     }
 
     public void calculateMonthlyPayment() {
+        sm.monthlyPaymentUi((Payment[]) paymentDAO.getAll());
+    }
 
+    public void resetCarId() {
+        carDAO.callFunction();
     }
 }

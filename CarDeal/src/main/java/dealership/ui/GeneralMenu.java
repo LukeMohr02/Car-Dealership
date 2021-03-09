@@ -20,12 +20,12 @@ public class GeneralMenu extends AbstractUi {
         String[] defaultActions = {"view cars on the lot","sign out"};
         String[] customerActions = {"make an offer", "view my cars", "view my payments", "apply for work"};
         String[] employeeActions = {"add car to lot", "remove car from lot", "accept offer", "reject offer", "view all payments", "resign from dealership"};
-        String[] systemActions = {"reject all pending offers", "calculate monthly payment"};
+        String[] systemActions = {"reject all pending offers", "calculate monthly payment", "reset car IDs"};
         SelectService ss = new SelectService();
 
         int userInputInt = -1;
 
-        System.out.println("Welcome, " + user.getUsername() + "!\nYou are a(n) " + user.getUserType() + ". Please select an option from the list below:\n\n");
+        System.out.println("\nWelcome, " + user.getUsername() + "!\nYou are a(n) " + user.getUserType() + ". Please select an option from the list below:\n\n");
 
         do {
             if (user.isLoggedIn() && user.getUserType().equals("customer")) {

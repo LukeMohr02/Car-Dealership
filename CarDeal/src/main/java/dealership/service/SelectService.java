@@ -63,7 +63,9 @@ public class SelectService {
             case "calculate monthly payment":
                 ss.calculateMonthlyPayment();
                 break;
-
+            case "reset car IDs":
+                ss.resetCarId();
+                break;
         }
     }
 }

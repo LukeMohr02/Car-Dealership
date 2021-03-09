@@ -122,4 +122,17 @@ public class CarDAO implements GenericDAO<Car, Integer> {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void callFunction() {
+        try {
+            PreparedStatement ps = new ConnectionSingleton().getConnection().prepareCall("select reset_car_id();");
+
+            boolean b = ps.execute();
+            System.out.println("Successfully reset car IDs: " + b);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

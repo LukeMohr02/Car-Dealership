@@ -23,7 +23,7 @@ public class TestDriver {
 
         //welcome.showUi(scan);
 
-        UserService us = new UserService();
+//        UserService us = new UserService();
 
         //us.addUser(us.createUser("Fred","123","customer"));
 //        us.removeUser("Fred");
@@ -38,7 +38,11 @@ public class TestDriver {
 
 //        EmployeeService es = new EmployeeService(us.createUser("", "", "customer"), scan);
 //        es.TESTSCAN();
-//
-//        scan.close();
+
+
+        GenericDAO dao = new CarDAO();
+        dao.callFunction();
+
+        scan.close();
     }        
 }

@@ -112,4 +112,9 @@ public class UserDAO implements GenericDAO<User, String> {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void callFunction() {
+
+    }
 }

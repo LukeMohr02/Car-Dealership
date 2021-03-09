@@ -44,7 +44,8 @@ class EmployeeService extends GeneralService {
     public void acceptOffer() {
         viewAllOffers();
         String[] strings = em.acceptOfferUi();
-        paymentDAO.insert(new Payment(strings[0], Integer.parseInt(strings[1]), 1));
+        Offer offer = (Offer) offerDAO.get(strings[0], strings[1]);
+        paymentDAO.insert(new Payment(strings[0], Integer.parseInt(strings[1]), offer.getAmount()));
         offerDAO.delete(strings[0], Integer.parseInt(strings[1]));
     }
 
