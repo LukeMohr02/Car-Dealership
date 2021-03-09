@@ -40,6 +40,7 @@ public class EmployeeMenu {
         int userInput = -1;
         do {
             try {
+                ime = null;
                 userInput = scan.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Input not recognized. Please enter the car ID as shown.");
@@ -74,6 +75,7 @@ public class EmployeeMenu {
         String[] userInput = null;
         do {
             try {
+                ime = null;
                 userInput = new String[]{scan.next(), scan.next()};
                 System.out.println("Accepting offer. Please contact your System Administrator to cancel all pending offers for this car.");
 
@@ -94,6 +96,7 @@ public class EmployeeMenu {
         String[] userInput = null;
         do {
             try {
+                ime = null;
                 userInput = new String[]{scan.next(), scan.next()};
                 System.out.println("Rejecting offer...");
 

@@ -29,8 +29,8 @@ public class SystemMenu {
         double[] userInput = null;
         do {
             try {
+                ime = null;
                 userInput = new double[]{scan.nextDouble(), scan.nextDouble()};
-                System.out.println(userInput[0] + ", " + userInput[1]);
             } catch (InputMismatchException e) {
                 System.out.println("Input not recognized. Please enter two decimal numbers, separated by a space.");
                 ime = e;
