@@ -55,6 +55,7 @@ public class TestDiscovery {
 
         for(Class c: testClasses) {
             for (Method m: getTestMethods(c)) {
+
                 String expected;
                 if (m !=null && m.getDeclaredAnnotation(TestMethod.class).expected() !=null) {
                     expected = m.getDeclaredAnnotation(TestMethod.class).expected();
@@ -77,14 +78,8 @@ public class TestDiscovery {
             }
         }
 
-        //Method m = methods[0];
-        // TODO: check if there is a no arg constructor, if there is not then throw an exception
-        //try {
-        //    m.invoke(clazz.getConstructors()[0].newInstance());
-            // TODO: Get information from the map to to inform the developer about the tests that were ran
-       // } catch (Exception e){
-       //     throw new EnterpriseNoAppropriateConstructorFoundException();
-       // }
+         //TODO: check if there is a no arg constructor, if there is not then throw an exception
+
         return results;
     }
 }
