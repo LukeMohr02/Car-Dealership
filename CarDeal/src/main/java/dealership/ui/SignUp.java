@@ -7,21 +7,26 @@ import java.util.Scanner;
 
 public class SignUp extends AbstractUi {
 
-    public void showUi(Scanner scan) {
+    public SignUp(Scanner scan) {
+        super(scan);
+    }
+
+    public void showUi() {
         String username;
         String password;
+        UserService us = new UserService();
 
         boolean unExists = true;
 
+        // Prompts user for valid username and password
         do {
             System.out.println("Username: ");
             username = scan.nextLine();
 
-            if (username != null && !UserService.usernameExists(username)) {
+            if (username != null && !us.usernameExists(username)) {
                 System.out.println("Password: ");
                 password = scan.nextLine();
 
-                UserService us = new UserService();
                 User user = null;
 
                 try {
@@ -35,8 +40,9 @@ public class SignUp extends AbstractUi {
                 user.setLoggedIn(true);
                 unExists = false;
 
-                GeneralMenu gm = new GeneralMenu(user);
-                gm.showUi(scan);
+                // Moves to GeneralMenu
+                GeneralMenu gm = new GeneralMenu(user, scan);
+                gm.showUi();
 
             } else {
                 System.out.println("Sign up failed, username already exists!");

@@ -1,5 +1,10 @@
-package dealership.collections;
+package dealership.collection;
 
+/*
+ *
+ * UNUSED
+ *
+ */
 public class ArrayList<E> implements List<E> {
     protected E[] array;
     protected int currentIndex = 0;

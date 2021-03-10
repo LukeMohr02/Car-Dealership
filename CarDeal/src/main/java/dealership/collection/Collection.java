@@ -1,4 +1,4 @@
-package dealership.collections;
+package dealership.collection;
 
 public interface Collection<E> {
 

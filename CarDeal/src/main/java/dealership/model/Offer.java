@@ -1,15 +1,15 @@
 package dealership.model;
 
-public class Payment {
+public class Offer {
     String userId;
     int    carId;
     double amount;
 
-    public Payment() {
+    public Offer() {
 
     }
 
-    public Payment(String userId, int carId, double amount) {
+    public Offer(String userId, int carId, double amount) {
         this.userId = userId;
         this.carId = carId;
         this.amount = amount;
@@ -31,11 +31,7 @@ public class Payment {
         this.carId = carId;
     }
 
-    public double getAmount() {
-        return amount;
-    }
+    public double getAmount() { return amount; }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+    public void setAmount(double amount) { this.amount = amount; }
 }

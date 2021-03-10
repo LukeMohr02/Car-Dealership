@@ -2,26 +2,30 @@ package dealership.service;
 
 import dealership.model.User;
 
+import java.util.Scanner;
+
 public class SelectService {
 
-    public void selectFromString(User user, String service) {
-
-        GeneralService gs = new GeneralService(user);
-        CustomerService cs = new CustomerService(user);
-        EmployeeService es = new EmployeeService(user);
-        SystemService ss = new SystemService(user);
-
+    // Calls the method specified by the input String
+    public void selectFromString(User user, Scanner scan, String service) {
+        GeneralService  gs = new GeneralService(user, scan);
+        CustomerService cs = new CustomerService(user, scan);
+        EmployeeService es = new EmployeeService(user, scan);
+        SystemService   ss = new SystemService(user, scan);
 
         switch (service) {
 
             // Default actions
+            case "view cars on the lot":
+                gs.viewLot();
+                break;
             case "sign out":
                 gs.signOut();
                 break;
 
             // Customer actions
-            case "view cars on lot":
-                cs.viewLot();
+            case "make an offer":
+                cs.makeOffer();
                 break;
             case "view my cars":
                 cs.viewCars();
@@ -47,23 +51,22 @@ public class SelectService {
                 es.rejectOffer();
                 break;
             case "view all payments":
-                es.viewALlPayments();
+                es.viewAllPayments();
                 break;
             case "resign from dealership":
                 es.resign();
                 break;
 
             // System actions
-            case "remove all cars from lot":
-                ss.removeAllCars();
-                break;
             case "reject all pending offers":
                 ss.rejectAllOffers();
                 break;
             case "calculate monthly payment":
                 ss.calculateMonthlyPayment();
                 break;
-
+            case "reset car IDs":
+                ss.resetCarId();
+                break;
         }
     }
 }
